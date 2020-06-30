@@ -6,6 +6,7 @@ dotenv.config();
 
 const app = express()
 
+// the url spotify should redirect to after authorization
 const redirect_uri = 
   process.env.REDIRECT_URI || 
   'http://localhost:8888/callback/'
@@ -13,6 +14,7 @@ const redirect_uri =
 
 app.use('/', express.static('public'));
 
+// redirect to spotify api to authorize the user 
 app.get('/login', function(req, res) {
   res.redirect(
 		'https://accounts.spotify.com/authorize?' +
@@ -27,6 +29,7 @@ app.get('/login', function(req, res) {
 	);
 })
 
+// get access token from spotify api
 app.get('/callback', function(req, res) {
   let code = req.query.code || null
   let authOptions = {
@@ -43,6 +46,8 @@ app.get('/callback', function(req, res) {
     },
     json: true
   }
+
+  // redirect to frontend client
   request.post(authOptions, function(error, response, body) {
     var access_token = body.access_token
     let uri = process.env.FRONTEND_URI || 'http://localhost:3000'
