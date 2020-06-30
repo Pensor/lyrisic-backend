@@ -10,7 +10,6 @@ const redirect_uri =
   process.env.REDIRECT_URI || 
   'http://localhost:8888/callback/'
 
-console.log(process.env)
 
 app.use('/', express.static('public'));
 
