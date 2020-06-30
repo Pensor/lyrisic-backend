@@ -1,21 +1,31 @@
-let express = require('express')
-let request = require('request')
-let querystring = require('querystring')
+const express = require('express')
+const request = require('request')
+const querystring = require('querystring')
+const dotenv = require('dotenv');
+dotenv.config();
 
-let app = express()
+const app = express()
 
-let redirect_uri = 
+const redirect_uri = 
   process.env.REDIRECT_URI || 
-  'http://localhost:8888/callback'
+  'http://localhost:8888/callback/'
+
+console.log(process.env)
+
+app.use('/', express.static('public'));
 
 app.get('/login', function(req, res) {
-  res.redirect('https://accounts.spotify.com/authorize?' +
-    querystring.stringify({
-      response_type: 'code',
-      client_id: process.env.SPOTIFY_CLIENT_ID,
-      scope: 'user-read-private user-read-email',
-      redirect_uri
-    }))
+  res.redirect(
+		'https://accounts.spotify.com/authorize?' +
+			querystring.stringify({
+				response_type: 'code',
+				client_id: process.env.SPOTIFY_CLIENT_ID,
+				scope:
+					'streaming user-read-email user-read-private user-read-playback-state user-modify-playback-state playlist-read-private',
+        redirect_uri,
+        show_dialog : true
+			})
+	);
 })
 
 app.get('/callback', function(req, res) {

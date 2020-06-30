@@ -1,0 +1,48 @@
+.start {
+    background: url("./img/bg.jpg") no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.start h1 {
+    font-size: 3em;
+    color: rgb(255, 255, 255);
+}
+
+.start a {
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(to bottom right, #f8ff00 0%, #3ad59f 25%, #3a63d5 65%, #753ad5 100%);
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.start a:hover {
+    transform: scale(1.02);
+    border: none;
+    outline: none;
+}
+
+.start a:active:after {
+    transform: scale(1.02);
+    border: none;
+    outline: none;
+}
+
+.logo {
+    background: url("./assets/img/Lyrisic_Artboard.png") no-repeat;
+}
+
+
+.mainLogo {
+    position: relative;
+    margin-left: 30;
+    float: left;
+}
