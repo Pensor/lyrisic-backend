@@ -47,10 +47,10 @@ app.get('/callback', function(req, res) {
     json: true
   }
 
-  // redirect to frontend client
   request.post(authOptions, function(error, response, body) {
     var access_token = body.access_token
-    let uri = process.env.FRONTEND_URI
+    let uri = process.env.FRONTEND_URI || "http://localhost:3000/"
+    // redirect to frontend client
     res.redirect(uri + '?access_token=' + access_token)
   })
 })
